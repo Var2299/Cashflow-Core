@@ -34,7 +34,7 @@ function App() {
     setError('')
 
     try {
-      const response = await fetch('https://cashflow-core-backend.vercel.app/', {
+      const response = await fetch('https://cashflow-core-backend.vercel.app/settle', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ members: validMembers })
