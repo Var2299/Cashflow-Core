@@ -43,7 +43,7 @@ The settlement algorithm uses a **greedy heap-based approach**:
 
 This section highlights the technical achievements of the core debt settlement logic.
 
-<img width="848" height="422" alt="image" src="https://github.com/user-attachments/assets/2cf01ed0-779f-4427-86c5-2b4a8cb1f749" />
+<img width="1300" height="475" alt="image" src="https://github.com/user-attachments/assets/e09f40bb-a661-4d9c-bd22-bbc6922c14cd" />
 
 
 ## 🧪 Testing
