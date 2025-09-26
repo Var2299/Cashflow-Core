@@ -241,14 +241,7 @@ const handleLoadSample = (key) => {
                     </button>
                   ))}
 
-                  <div className="border-t border-gray-100 my-1" />
-
-                  <button
-                    onClick={() => handleLoadSample('RANDOM')}
-                    className="w-full text-left px-4 py-2 hover:bg-gray-50 text-sm font-medium text-emerald-600"
-                  >
-                    Generate Random Sample
-                  </button>
+                  
                 </div>
               </div>
             )}
