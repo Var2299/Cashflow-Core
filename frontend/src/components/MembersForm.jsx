@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react'
 import {
  Plus,
@@ -25,18 +26,44 @@ const PRESET_SAMPLES = {
     { id: 'E', net: -10.0 },
     { id: 'D', net: -10.0 },
   ],
-  'Small Trip (4)': [
-    { id: 'Alice', net: 200.0 },
-    { id: 'Bob', net: -50.0 },
-    { id: 'Carol', net: -100.0 },
-    { id: 'Dave', net: -50.0 },
-  ],
+  'TwoBigManySmall_9': [
+    { id: 'Big1', net: 900.00 },
+    { id: 'Big2', net: 300.00 },
+    { id: 's1', net: -200.00 },
+    { id: 's2', net: -180.00 },
+    { id: 's3', net: -160.00 },
+    { id: 's4', net: -150.00 },
+    { id: 's5', net: -140.00 },
+    { id: 's6', net: -130.00 },
+    { id: 's7', net: -240.00 }
+  ]
+  ,
+  
   'Edge cents (many small)': [
     { id: 'U1', net: 0.01 },
     { id: 'U2', net: -0.01 },
     { id: 'U3', net: 0.02 },
     { id: 'U4', net: -0.02 },
   ],
+  'Small Trip (4)': [
+    { id: 'Alice', net: 200.0 },
+    { id: 'Bob', net: -50.0 },
+    { id: 'Carol', net: -100.0 },
+    { id: 'Dave', net: -50.0 },
+  ],
+  'Base 10 (Varied)': [
+    { id: 'A', net: -220.00 },
+    { id: 'B', net: -100.00 },
+    { id: 'C', net: -50.00 },
+    { id: 'D', net: -40.00 },
+    { id: 'E', net: -60.00 },
+    { id: 'F', net: 320.00 },
+    { id: 'G', net: 150.00 },
+    { id: 'H', net: 100.00 },
+    { id: 'I', net: -25.00 },
+    { id: 'J', net: -75.00 }
+  ],
+  
   'Mixed (8)': [
     { id: 'P', net: 150.0 },
     { id: 'Q', net: -70.0 },
@@ -47,19 +74,6 @@ const PRESET_SAMPLES = {
     { id: 'V', net: 25.0 },
     { id: 'W', net: -75.0 },
   ],
-}
-
-function randomSample(count = 6) {
-  const arr = []
-  let total = 0
-  for (let i = 0; i < count - 1; i++) {
-    const val = Math.round((Math.random() * 200 - 100) * 100) / 100
-    arr.push({ id: `R${i + 1}`, net: val })
-    total += val
-  }
-  const last = Math.round((-total) * 100) / 100
-  arr.push({ id: `R${count}`, net: last })
-  return arr
 }
 
 function MembersForm({ members, setMembers, onLoadSample, onSubmit, loading, onClear }) {
@@ -92,22 +106,24 @@ function MembersForm({ members, setMembers, onLoadSample, onSubmit, loading, onC
   const isBalanced = Math.abs(totalNet) < 0.01
   const validMembers = members.filter(m => String(m.id).trim() && Number(m.net) !== 0).length
 
-  // load a named preset sample (or random)
-  const handleLoadSample = (key) => {
-    let sampleMembers = []
-    if (key === 'RANDOM') sampleMembers = randomSample(8)
-    else sampleMembers = PRESET_SAMPLES[key] ? PRESET_SAMPLES[key].map(m => ({ ...m })) : []
+// ---------- Updated handleLoadSample uses the new generator ----------
+const handleLoadSample = (key) => {
+  let sampleMembers = [];
+  
+    sampleMembers = PRESET_SAMPLES[key] ? PRESET_SAMPLES[key].map(m => ({ ...m })) : [];
+  
 
-    if (sampleMembers.length) {
-      setMembers(sampleMembers)
-      try {
-        if (typeof onLoadSample === 'function') onLoadSample(sampleMembers)
-      } catch (err) {
-        console.warn('onLoadSample threw or has different signature:', err)
-      }
+  if (sampleMembers.length) {
+    setMembers(sampleMembers);
+    try {
+      if (typeof onLoadSample === 'function') onLoadSample(sampleMembers);
+    } catch (err) {
+      console.warn('onLoadSample threw or has different signature:', err);
     }
-    setMenuOpen(false)
   }
+  setMenuOpen(false);
+};
+
 
   // CLEAR: reset to single empty member row and tell parent to clear results if provided
   const handleClear = () => {
