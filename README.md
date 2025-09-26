@@ -45,7 +45,6 @@ This section highlights the technical achievements of the core debt settlement l
 
 <img width="703" height="394" alt="image" src="https://github.com/user-attachments/assets/556f88b8-e45a-4f6f-a2d1-0838db40779c" />
 
-
 ## 🧪 Testing
 
 Backend includes comprehensive tests:
