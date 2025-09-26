@@ -39,6 +39,13 @@ The settlement algorithm uses a **greedy heap-based approach**:
 **Time Complexity**: O(k log k) where k = number of non-zero balances  
 **Space Complexity**: O(k) for heap storage
 
+## 🌟 Key Performance & Optimization Metrics
+
+This section highlights the technical achievements of the core debt settlement logic.
+
+<img width="848" height="422" alt="image" src="https://github.com/user-attachments/assets/2cf01ed0-779f-4427-86c5-2b4a8cb1f749" />
+
+
 ## 🧪 Testing
 
 Backend includes comprehensive tests:
