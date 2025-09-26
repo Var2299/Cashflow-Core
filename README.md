@@ -150,5 +150,3 @@ npm test
   }
 }
 ```
-
-**Built with ❤️ using Node.js, React, and optimal algorithms**
