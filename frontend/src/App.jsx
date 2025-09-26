@@ -91,7 +91,7 @@ function App() {
               </div>
             </div>
             <a
-              href="https://github.com/Var2299"
+              href="https://github.com/Var2299/Cashflow-Core"
               className="p-2 text-gray-600 hover:text-gray-900 transition-colors"
               title="View on GitHub"
             >
