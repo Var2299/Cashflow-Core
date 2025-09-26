@@ -10,6 +10,70 @@ A minimal, production-ready debt settlement microservice with React demo UI. Use
 - **Precision**: Integer cent calculations prevent rounding errors
 - **Validation**: Comprehensive input validation and error handling
 
+## 🎯 Frontend Features
+
+- **Interactive Form**: Add/remove members dynamically
+- **Sample Data**: Quick demo with pre-filled realistic data
+- **Real-time Validation**: Balance checking and error display
+- **Results Display**: Clean transaction table with copy-to-clipboard
+- **Responsive Design**: Works on mobile and desktop
+- **Loading States**: Smooth UX during API calls
+
+## 🔒 Input Validation
+
+- Members must have unique IDs
+- Net amounts must be finite numbers
+- Minimum 2 members with non-zero balances
+- Proper error messages for all edge cases
+
+## 🧮 Algorithm Details
+
+The settlement algorithm uses a **greedy heap-based approach**:
+
+1. **Convert to cents**: Avoids floating-point precision issues
+2. **Separate creditors/debtors**: Split into positive/negative balances  
+3. **Heap optimization**: Max-heap for creditors, min-heap for debtors
+4. **Greedy matching**: Always settle largest creditor with smallest debtor
+5. **Minimize transactions**: Reduces complexity from O(n²) to O(k log k)
+
+**Time Complexity**: O(k log k) where k = number of non-zero balances  
+**Space Complexity**: O(k) for heap storage
+
+## 🧪 Testing
+
+Backend includes comprehensive tests:
+- Simple three-person split
+- All zero balances edge case  
+- Rounding precision validation
+- Single person handling
+- Empty input validation
+
+```bash
+cd backend && npm test
+```
+
+## 🚀 Production Deployment
+
+### Backend
+```bash
+cd backend
+npm start  # Runs on PORT env var or 3001
+```
+
+### Frontend  
+```bash
+cd frontend
+npm run build   # Creates dist/ folder
+npm run preview # Serve built files
+```
+
+## 📊 Performance
+
+- **Optimized Algorithm**: Heap-based matching reduces transactions
+- **Integer Arithmetic**: Prevents floating-point errors  
+- **Minimal Dependencies**: Fast startup and small footprint
+- **Efficient Frontend**: Optimized React components with minimal re-renders
+  
 ## 📁 Project Structure
 
 ```
@@ -86,97 +150,5 @@ npm test
   }
 }
 ```
-
-### cURL Example
-```bash
-curl -X POST http://localhost:3001/settle \
-  -H "Content-Type: application/json" \
-  -d '{
-    "members": [
-      {"id": "Alice", "net": 100},
-      {"id": "Bob", "net": -60},
-      {"id": "Carol", "net": -40}
-    ]
-  }'
-```
-
-## 🧮 Algorithm Details
-
-The settlement algorithm uses a **greedy heap-based approach**:
-
-1. **Convert to cents**: Avoids floating-point precision issues
-2. **Separate creditors/debtors**: Split into positive/negative balances  
-3. **Heap optimization**: Max-heap for creditors, min-heap for debtors
-4. **Greedy matching**: Always settle largest creditor with smallest debtor
-5. **Minimize transactions**: Reduces complexity from O(n²) to O(k log k)
-
-**Time Complexity**: O(k log k) where k = number of non-zero balances  
-**Space Complexity**: O(k) for heap storage
-
-## 🧪 Testing
-
-Backend includes comprehensive tests:
-- Simple three-person split
-- All zero balances edge case  
-- Rounding precision validation
-- Single person handling
-- Empty input validation
-
-```bash
-cd backend && npm test
-```
-
-## 🎯 Frontend Features
-
-- **Interactive Form**: Add/remove members dynamically
-- **Sample Data**: Quick demo with pre-filled realistic data
-- **Real-time Validation**: Balance checking and error display
-- **Results Display**: Clean transaction table with copy-to-clipboard
-- **Responsive Design**: Works on mobile and desktop
-- **Loading States**: Smooth UX during API calls
-
-## 🔒 Input Validation
-
-- Members must have unique IDs
-- Net amounts must be finite numbers
-- Minimum 2 members with non-zero balances
-- Proper error messages for all edge cases
-
-## 🚀 Production Deployment
-
-### Backend
-```bash
-cd backend
-npm start  # Runs on PORT env var or 3001
-```
-
-### Frontend  
-```bash
-cd frontend
-npm run build   # Creates dist/ folder
-npm run preview # Serve built files
-```
-
-## 📊 Performance
-
-- **Optimized Algorithm**: Heap-based matching reduces transactions
-- **Integer Arithmetic**: Prevents floating-point errors  
-- **Minimal Dependencies**: Fast startup and small footprint
-- **Efficient Frontend**: Optimized React components with minimal re-renders
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create feature branch: `git checkout -b feature/amazing-feature`
-3. Run tests: `npm test`  
-4. Commit changes: `git commit -m 'Add amazing feature'`
-5. Push to branch: `git push origin feature/amazing-feature`
-6. Open Pull Request
-
-## 📄 License
-
-MIT License - see LICENSE file for details.
-
----
 
 **Built with ❤️ using Node.js, React, and optimal algorithms**
