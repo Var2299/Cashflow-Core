@@ -170,7 +170,9 @@ const PRESET_SAMPLES = {
   { "id": "EW", "net": 90.0 },
   { "id": "EX", "net": -90.0 },
   { "id": "EY", "net": 30.0 },
-  { "id": "EZ", "net": -30.0 }
+  { "id": "EZ", "net": -30.0 },
+  { "id": "FA", "net": -55.0 }
+
 ]
  ,
   'Default 10 (balanced)': [
