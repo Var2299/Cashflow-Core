@@ -23,7 +23,7 @@ function App() {
   const [error, setError] = useState('')
 
   const handleSettlement = async () => {
-    const validMembers = members.filter(m => String(m.id).trim() && Number(m.net) !== 0)
+    const validMembers = members.filter(m => String(m.id).trim())
 
     if (validMembers.length < 2) {
       setError('Need at least 2 members with non-zero balances')
